@@ -52,6 +52,11 @@ while (checker) { // vado a pienare l'array con tutti i tentativi, appena l'uten
           } else {
                checker = true;
                document.getElementById('id').innerHTML = 'BOOOM!!! Il punteggio è : ' + numeroUtente.length;
+               document.getElementById('id2').innerHTML = 'DATI : ';
+               document.getElementById('id3').innerHTML = 'i numeri che hai scelto: '  + numeroUtente;
+               document.getElementById('id4').innerHTML = 'i numeri del campo minato: ' + numeriRandom;
+               document.getElementById('id5').innerHTML = 'Difficoltà: ' + chiedodifficolta;
+
           }
      }
 }
