@@ -44,7 +44,7 @@ while (checker) { // vado a pienare l'array con tutti i tentativi, appena l'uten
      var chiedo = parseInt(prompt('inserisci un numero'));
      document.getElementById('id').innerHTML = 'BOOOM!!! Il punteggio è : ' + numeroUtente.length;
 
-     if(chiedo <= 100 && chiedo >= 1){ //Piccolo check per non prendere i numeri superiori a 100 e minori a 1
+     if(chiedo <= 100 && chiedo >= 1 && !numeroUtente.includes(chiedo) ){ //Piccolo check per non prendere i numeri superiori a 100 e minori a 1 e non prendere i numeri doppi
           numeroUtente.push(chiedo);
           console.log(numeroUtente);
           if (numeriRandom.includes(chiedo)){
