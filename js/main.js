@@ -14,6 +14,9 @@ Con difficoltà 0=> tra 1 e 100, con difficoltà 1 =>  tra 1 e 80, con difficolt
 */
 
 var checker = true;
+var totaleMine = 16;
+var bandierineMax = difficolta - totaleMine;
+
 var chiedodifficolta = prompt('Inserisci una difficoltà tra 0 e 2 , 0 è facile, 1 è medio e 2 è difficile.');
 if (chiedodifficolta == 0) {
 var difficolta = 100;
@@ -32,23 +35,28 @@ console.log(difficolta); //debug
 
 var numeriRandom = []; //*Array vuoto
 
-for (var i = 0; i < 16; i++) { //Creo 16 numberi da 1 a 100 randomici
-     var numeroRandom = generaRandom(1,difficolta);
-     numeriRandom.push(numeroRandom); // Push 16 numeri nell'array numeriRandom.
+while (numeriRandom.length < totaleMine) { //Creo 16 numberi da 1 a 100 randomici
+     var numeroRandom = generaRandom(1, difficolta);
+     if(!numeriRandom.includes(numeroRandom)){
+          numeriRandom.push(numeroRandom); // Push 16 numeri nell'array numeriRandom.
+     }
+
 }
 console.log(numeriRandom); //DEBUG *Array pieno
 
 var numeroUtente = []; //Array vuoto per numero utente
 
 while (checker) { // vado a pienare l'array con tutti i tentativi, appena l'utente digita il numero generato dal for sopra while si stoppa
-     var chiedo = parseInt(prompt('inserisci un numero'));
+     var chiedo = parseInt(prompt('inserisci un numero da 1 a ' + difficolta));
      document.getElementById('id').innerHTML = 'BOOOM!!! Il punteggio è : ' + numeroUtente.length;
 
-     if(chiedo <= 100 && chiedo >= 1 && !numeroUtente.includes(chiedo) ){ //Piccolo check per non prendere i numeri superiori a 100 e minori a 1 e non prendere i numeri doppi
+     if(chiedo <= difficolta && chiedo >= 1 && !numeroUtente.includes(chiedo) ){ //Piccolo check per non prendere i numeri superiori a 100 e minori a 1 e non prendere i numeri doppi
           numeroUtente.push(chiedo);
           console.log(numeroUtente);
           if (numeriRandom.includes(chiedo)){
                var checker = false;
+          }else if(numeroUtente.length == bandierineMax){
+               document.getElementById('id').innerHTML = 'Hai vinto e ti consiglio di andare a giocare al superenalotto';
           } else {
                checker = true;
                document.getElementById('id').innerHTML = 'BOOOM!!! Il punteggio è : ' + numeroUtente.length;
@@ -60,7 +68,6 @@ while (checker) { // vado a pienare l'array con tutti i tentativi, appena l'uten
           }
      }
 }
-
 
 
 
